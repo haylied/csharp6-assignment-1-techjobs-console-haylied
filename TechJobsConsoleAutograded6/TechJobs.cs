@@ -64,12 +64,13 @@ namespace TechJobsConsoleAutograded6
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        Console.WriteLine(JobData.FindByValue(columnChoice));
+                        //Console.WriteLine("Search all fields not yet implemented.");
                     }
                     else
                     {
                         List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                        PrintJobs(searchResults);
+                        PrintJobs(searchResults); // finding job info by column and value to print
                     }
                 }
 
@@ -83,12 +84,12 @@ namespace TechJobsConsoleAutograded6
         {
             int choiceIdx;
             bool isValidChoice = false;
-            string[] choiceKeys = new string[choices.Count];
+            string[] choiceKeys = new string[choices.Count]; // array of strings called choiceKeys set at the length of the choices dictionary
 
             int i = 0;
-            foreach (KeyValuePair<string, string> choice in choices)
+            foreach (KeyValuePair<string, string> choice in choices) // done for each choice in choices and placed in the choiceKeys array
             {
-                choiceKeys[i] = choice.Key;
+                choiceKeys[i] = choice.Key; // choiceKeys array at index[i] is equal to choice.Key (aka the keys is placed into array)
                 i++;
             }
 
@@ -105,7 +106,7 @@ namespace TechJobsConsoleAutograded6
 
                 for (int j = 0; j < choiceKeys.Length; j++)
                 {
-                    Console.WriteLine(j + " - " + choices[choiceKeys[j]]);
+                    Console.WriteLine(j + " - " + choices[choiceKeys[j]]); // j = the number , " - " , choices [ choiceKeys[j] ] (itll return the value)
                 }
 
                 string input = Console.ReadLine();
@@ -133,10 +134,44 @@ namespace TechJobsConsoleAutograded6
         }
 
         // TODO: complete the PrintJobs method.
-        public void PrintJobs(List<Dictionary<string, string>> someJobs)
+        public void PrintJobs(List<Dictionary<string, string>> someJobs) // list of jobs that contain Employer(key) and the ValueOfEmployer(value)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+
+            foreach (Dictionary<string, string> job in someJobs)// iterates over the list to the jobs(dictionaries)
+            {
+
+                if (true)
+                {
+                    Console.WriteLine("*****" + Environment.NewLine);
+
+                    foreach (KeyValuePair<string, string> value in job) // stair stepping down into the dictionary
+                    {
+
+
+
+                        Console.WriteLine(value.Key + ": " + value.Value + Environment.NewLine);
+
+                        //Console.WriteLine(value.job["position type"]+ ": " + value.Value + Environment.NewLine);
+
+                        // Need This Order -
+
+                        // 1. Postion Type:
+                        // 2. Name:
+                        // 3. Employer:
+                        // 4. Location:
+                        // 5. Core Competency:
+
+
+                        Console.WriteLine("*****" + Environment.NewLine);
+                        Console.WriteLine(Environment.NewLine);
+                    }
+                }
+
+                Console.WriteLine("No Results");
+            }
+                
+            
+            //Console.WriteLine("PrintJobs is not implemented yet");
         }
     }
 }
-

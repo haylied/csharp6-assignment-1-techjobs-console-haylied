@@ -18,27 +18,33 @@ namespace TechJobsConsoleAutograded6
          * Returns a list of all values contained in a given column,
          * without duplicates. 
          */
+
+
+
         public static List<string> FindAll(string column)
         {
             LoadData();
 
             List<string> values = new List<string>();
 
-            foreach (Dictionary<string, string> job in AllJobs)
+            foreach (Dictionary<string, string> job in AllJobs) // separating the list of dictionarys to grab the jobs separately
             {
-                string aValue = job[column];
+                string aValue = job[column]; // grabbing job[column] from user input
 
-                if (!values.Contains(aValue))
+                if (!values.Contains(aValue)) // if Values list does not hold job already present in columnn in the list
                 {
-                    values.Add(aValue);
+                    values.Add(aValue); // add aValue it to the Values list
                 }
             }
 
             return values;
         }
 
+
+
         /**
-         * Search all columns for the given term
+         * 1. Search all columns for the given term
+         * 2. Not return duplicate jobs (position type: "Web - Front End" & name: "Front end web deb" removed"
          */
 
         //TODO: Complete the FindByValue method
@@ -46,6 +52,22 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
+
+            //List<string> columnValues = FindAll(value);
+
+        
+            // we have a string value that we use to search the columns (string value)
+            // 
+
+            List<string> columnValues = new List<string>();
+
+            foreach (Dictionary<string,string> columns in AllJobs)
+            {
+                string aValue = columns[value];
+                Console.WriteLine(columns[value] + FindAll(aValue));
+
+            }
+     
 
             return null;
         }
@@ -57,6 +79,11 @@ namespace TechJobsConsoleAutograded6
          * For example, searching for employer "Enterprise" will include results
          * with "Enterprise Holdings, Inc".
          */
+
+
+
+
+
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
         {
             // load data, if not already loaded
