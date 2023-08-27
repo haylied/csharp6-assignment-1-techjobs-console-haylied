@@ -60,6 +60,7 @@ namespace TechJobsConsoleAutograded6
                     // What is their search term?
                     Console.WriteLine(Environment.NewLine + "Search term: ");
                     string searchTerm = Console.ReadLine();
+                    List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
@@ -67,19 +68,25 @@ namespace TechJobsConsoleAutograded6
                         //Console.WriteLine(JobData.FindByValue(searchTerm));
                         Console.WriteLine("Search all fields not yet implemented.");
                     }
-                    else
+                    else if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
                     {
-                        List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         //PrintJobs(searchResults); // finding job info by column and value to print
 
-                        if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
-                        {
-                            Console.WriteLine("No results");
-                        } else
-                        {
-                            //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                            PrintJobs(searchResults); // finding job info by column and value to print
-                        }
+                        Console.WriteLine("No results");
+
+                        //if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
+                        //{
+                        //    Console.WriteLine("No results");
+                        //} else
+                        //{
+                        //    //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        //    PrintJobs(searchResults); // finding job info by column and value to print
+                        //}
+                    } else
+
+                    {
+                        PrintJobs(searchResults);
                     }
                 }
 
