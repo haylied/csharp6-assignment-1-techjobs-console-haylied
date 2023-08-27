@@ -53,24 +53,24 @@ namespace TechJobsConsoleAutograded6
             // load data, if not already loaded
             LoadData();
 
-            //List<string> columnValues = FindAll(value);
+            //List<string> outputs = jobs.Values.ToList();
+            //List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
+            List<string> data = new List<string>();
 
-        
-            // we have a string value that we use to search the columns (string value)
-            // 
-
-            List<string> columnValues = new List<string>();
-
-            foreach (Dictionary<string,string> columns in AllJobs)
+            foreach (Dictionary<string, string> jobs in AllJobs)
             {
-                string aValue = columns[value];
-                Console.WriteLine(columns[value] + FindAll(aValue));
+                string values = jobs[value]; 
 
+                if (!data.Contains(values))
+                {
+                    data.Add(values);
+
+                }
             }
-     
-
+            //return data;
             return null;
         }
+
 
         /**
          * Returns results of search the jobs data by key/value, using
@@ -79,9 +79,6 @@ namespace TechJobsConsoleAutograded6
          * For example, searching for employer "Enterprise" will include results
          * with "Enterprise Holdings, Inc".
          */
-
-
-
 
 
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
@@ -93,17 +90,21 @@ namespace TechJobsConsoleAutograded6
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                string aValue = row[column];
+                string aValue = row[column]; // KEY
 
 
                 //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+
+                    // Case Insensitive without changing strings case:
+                    //String.Equals(aValue, value, StringComparison.OrdinalIgnoreCase);
+
+                if (aValue.Contains(value)) // if AllJobs.Key contains value
                 {
-                    jobs.Add(row);
+                    jobs.Add(row); // then add row/all info to jobs list
                 }
             }
 
-            return jobs;
+            return jobs; // return the list
         }
 
         /*
