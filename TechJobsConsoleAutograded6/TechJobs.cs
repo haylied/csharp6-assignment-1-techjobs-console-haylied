@@ -60,20 +60,42 @@ namespace TechJobsConsoleAutograded6
                     // What is their search term?
                     Console.WriteLine(Environment.NewLine + "Search term: ");
                     string searchTerm = Console.ReadLine();
+
                     List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
-                    {
-                        //Console.WriteLine(JobData.FindByValue(searchTerm));
-                        Console.WriteLine("Search all fields not yet implemented.");
+                    { 
+                        //Console.WriteLine("Search all fields not yet implemented.");
+                        PrintJobs(JobData.FindByValue(searchTerm));
                     }
-                    else if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
+
+                    // ARE THESE NECESSARY?
+
+                    //else if(columnChoice.Equals("skill"))
+                    //{
+                    //    PrintJobs(JobData.FindByValue(searchTerm));
+                    //}
+                    //else if (columnChoice.Equals("employer"))
+                    //{
+                    //    PrintJobs(JobData.FindByValue(searchTerm));
+                    //}
+                    //else if (columnChoice.Equals("location"))
+                    //{
+                    //    PrintJobs(JobData.FindByValue(searchTerm));
+                    //}
+                    //else if (columnChoice.Equals("position type"))
+                    //{
+                    //    PrintJobs(JobData.FindByValue(searchTerm));
+                    //}
+                    else if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))//another way so that I can fetch results of FindByValue()
                     {
+
+                        Console.WriteLine("No results");
+
                         //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         //PrintJobs(searchResults); // finding job info by column and value to print
 
-                        Console.WriteLine("No results");
 
                         //if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
                         //{
@@ -83,8 +105,9 @@ namespace TechJobsConsoleAutograded6
                         //    //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         //    PrintJobs(searchResults); // finding job info by column and value to print
                         //}
-                    } else
 
+                    }
+                    else
                     {
                         PrintJobs(searchResults);
                     }
@@ -101,6 +124,7 @@ namespace TechJobsConsoleAutograded6
             int choiceIdx;
             bool isValidChoice = false;
             string[] choiceKeys = new string[choices.Count]; // array of strings called choiceKeys set at the length of the choices dictionary
+            // ^^^ GET CLEAR ON WHAT CHOICEKEYS HOLDS
 
             int i = 0;
             foreach (KeyValuePair<string, string> choice in choices) // done for each choice in choices and placed in the choiceKeys array
