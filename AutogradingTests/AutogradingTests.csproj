@@ -26,7 +26,13 @@
     <None Remove="TestPrintJobsNoResults.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="**/*">
+    <!--<Content Include="**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>-->
+    <Content Include="**\*.json" Exclude="$(DefaultItemExcludes)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="job_data.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestCaseInsensitiveSearch.txt">

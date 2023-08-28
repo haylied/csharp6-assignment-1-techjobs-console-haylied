@@ -65,11 +65,11 @@ namespace TechJobsConsoleAutograded6
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
-                    { 
+                    {
                         //Console.WriteLine("Search all fields not yet implemented.");
                         PrintJobs(JobData.FindByValue(searchTerm));
                     }
-
+                    /*
                     // ARE THESE NECESSARY?
 
                     //else if(columnChoice.Equals("skill"))
@@ -88,12 +88,40 @@ namespace TechJobsConsoleAutograded6
                     //{
                     //    PrintJobs(JobData.FindByValue(searchTerm));
                     //}
-                    else if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))//another way so that I can fetch results of FindByValue()
+                    */
+
+                    else
                     {
-
-                        Console.WriteLine("No results");
-
                         //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        //PrintJobs(searchResults);
+                        if (searchResults.Count == 0 ) 
+                        {
+                            Console.WriteLine("No results");
+                        }
+                        else
+                        {
+                            PrintJobs(searchResults);
+                        }
+
+                        //PrintJobs(searchResults);
+                    }
+
+                    //else if(searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))//another way so that I can fetch results of FindByValue()
+                    //else
+                    //{
+
+                    //    Console.WriteLine("No results");
+
+                    //}
+
+                }
+
+            }
+        }
+
+
+        /*
+          //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         //PrintJobs(searchResults); // finding job info by column and value to print
 
 
@@ -105,16 +133,8 @@ namespace TechJobsConsoleAutograded6
                         //    //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         //    PrintJobs(searchResults); // finding job info by column and value to print
                         //}
+        */
 
-                    }
-                    else
-                    {
-                        PrintJobs(searchResults);
-                    }
-                }
-
-            }
-        }
 
         /*
          * Returns the key of the selected item from the choices Dictionary

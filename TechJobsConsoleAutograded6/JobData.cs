@@ -52,18 +52,23 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
+
             //TechJobs.GetUserSelection("Search", value);
             //List<string> outputs = jobs.Values.ToList();
-            //List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
-            List<string> data = new List<string>();
+            List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
+            //List<string> data = new List<string>();
 
             foreach (Dictionary<string, string> jobs in AllJobs)
             {
-                string values = jobs[value]; // VALUE NEEDS TO BE THE COLUMN
+                //string values = jobs[value]; // VALUE NEEDS TO BE THE COLUMN
+                
 
-                if (!data.Contains(values))
+                if (jobs.Values.Contains(value))
                 {
-                    data.Add(values);
+                    if(!data.Contains(jobs))
+                    {
+                        data.Add(jobs);
+                    }
 
                 }
             }
