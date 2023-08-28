@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace TechJobsConsoleAutograded6
@@ -19,8 +20,6 @@ namespace TechJobsConsoleAutograded6
          * without duplicates. 
          */
 
-
-
         public static List<string> FindAll(string column)
         {
             LoadData();
@@ -40,8 +39,6 @@ namespace TechJobsConsoleAutograded6
             return values;
         }
 
-
-
         /**
          * 1. Search all columns for the given term
          * 2. Not return duplicate jobs (position type: "Web - Front End" & name: "Front end web deb" removed"
@@ -53,27 +50,21 @@ namespace TechJobsConsoleAutograded6
             // load data, if not already loaded
             LoadData();
 
-            //TechJobs.GetUserSelection("Search", value);
-            //List<string> outputs = jobs.Values.ToList();
             List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
-            //List<string> data = new List<string>();
 
-            foreach (Dictionary<string, string> jobs in AllJobs)
+            foreach (Dictionary<string, string> job in AllJobs)
             {
-                //string values = jobs[value]; // VALUE NEEDS TO BE THE COLUMN
-                
-
-                if (jobs.Values.Contains(value))
+                foreach(KeyValuePair<string, string> kvp in job)
                 {
-                    if(!data.Contains(jobs))
+                    if (kvp.Value.ToUpper().Contains(value.ToUpper()) && !data.Contains(job))
                     {
-                        data.Add(jobs);
+                        data.Add(job);
                     }
-
                 }
+               
             }
-            //return data;
-            return null;
+         
+            return data;
         }
 
 
@@ -100,10 +91,7 @@ namespace TechJobsConsoleAutograded6
 
                 //TODO: Make search case-insensitive
 
-                    // Case Insensitive without changing strings case:
-                    //String.Equals(aValue, value, StringComparison.OrdinalIgnoreCase);
-
-                if (aValue.Contains(value)) // if AllJobs.Key contains value
+                if (aValue.ToUpper().Contains(value.ToUpper())) // if AllJobs.Key contains value
                 {
                     jobs.Add(row); // then add row/all info to jobs list
                 }
@@ -194,4 +182,3 @@ namespace TechJobsConsoleAutograded6
         }
     }
 }
-

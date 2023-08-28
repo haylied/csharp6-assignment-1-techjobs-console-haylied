@@ -2,8 +2,8 @@
 
 namespace TechJobsConsoleAutograded6
 {
-	public class TechJobs
-	{
+    public class TechJobs
+    {
         public void RunProgram()
         {
             // Create two Dictionary vars to hold info for menu and data
@@ -61,81 +61,31 @@ namespace TechJobsConsoleAutograded6
                     Console.WriteLine(Environment.NewLine + "Search term: ");
                     string searchTerm = Console.ReadLine();
 
-                    List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
                         //Console.WriteLine("Search all fields not yet implemented.");
                         PrintJobs(JobData.FindByValue(searchTerm));
                     }
-                    /*
-                    // ARE THESE NECESSARY?
-
-                    //else if(columnChoice.Equals("skill"))
-                    //{
-                    //    PrintJobs(JobData.FindByValue(searchTerm));
-                    //}
-                    //else if (columnChoice.Equals("employer"))
-                    //{
-                    //    PrintJobs(JobData.FindByValue(searchTerm));
-                    //}
-                    //else if (columnChoice.Equals("location"))
-                    //{
-                    //    PrintJobs(JobData.FindByValue(searchTerm));
-                    //}
-                    //else if (columnChoice.Equals("position type"))
-                    //{
-                    //    PrintJobs(JobData.FindByValue(searchTerm));
-                    //}
-                    */
 
                     else
                     {
-                        //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                        //PrintJobs(searchResults);
-                        if (searchResults.Count == 0 ) 
+                        List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        PrintJobs(searchResults);
+
+                        if (searchResults.Count == 0)
                         {
                             Console.WriteLine("No results");
                         }
-                        else
-                        {
-                            PrintJobs(searchResults);
-                        }
 
-                        //PrintJobs(searchResults);
                     }
 
-                    //else if(searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))//another way so that I can fetch results of FindByValue()
-                    //else
-                    //{
 
-                    //    Console.WriteLine("No results");
-
-                    //}
 
                 }
 
             }
         }
-
-
-        /*
-          //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                        //PrintJobs(searchResults); // finding job info by column and value to print
-
-
-                        //if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
-                        //{
-                        //    Console.WriteLine("No results");
-                        //} else
-                        //{
-                        //    //List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                        //    PrintJobs(searchResults); // finding job info by column and value to print
-                        //}
-        */
-
-
         /*
          * Returns the key of the selected item from the choices Dictionary
          */
@@ -196,38 +146,23 @@ namespace TechJobsConsoleAutograded6
         // TODO: complete the PrintJobs method.
         public void PrintJobs(List<Dictionary<string, string>> someJobs) // list of jobs that contain Employer(key) and the ValueOfEmployer(value)
         {
-            //if (GetUserSelection()) //if input is not present in the data
-            //{
-            //    Console.WriteLine("No results");
-            //} else
-            //{
-                foreach (Dictionary<string, string> job in someJobs)// iterates over the list to the jobs(dictionaries)
+
+            foreach (Dictionary<string, string> job in someJobs)// iterates over the list to the jobs(dictionaries)
+            {
+
+                Console.WriteLine(Environment.NewLine + "*****");
+
+                foreach (KeyValuePair<string, string> value in job) // stair stepping down into the dictionary
                 {
 
-                    Console.WriteLine(Environment.NewLine + "*****");
-
-                    foreach (KeyValuePair<string, string> value in job) // stair stepping down into the dictionary
-                    {
-
-                        Console.WriteLine(value.Key + ": " + value.Value);
-
-                    }
-                    Console.WriteLine("*****");
+                    Console.WriteLine(value.Key + ": " + value.Value);
 
                 }
-            //}
-                
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No results");
-            //}
-            //someJobs.Contains(value);
-               
+                Console.WriteLine("*****");
+
+            }
+
+
         }
     }
 }
-
-//if(someJobs != JobData.FindAll()) //if input is not present in the data
-//if (someJobs = null)
-
